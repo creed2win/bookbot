@@ -23,14 +23,19 @@ def char_count(text):
     return char_count
 
 def sort_on(dict):
-    return dict["num"]
+    return dict["count"]
 
 def report(char_count_dict):
     char_list = []
     for char in char_count_dict:
         one_char_count = char_count_dict[char]
-        char_list.append({char: one_char_count})
-        
-    char_list.sort(reverse=True, key=char_list[1])
+        char_list.append({"char": char, "count": one_char_count})
+    
+    char_list.sort(reverse=True, key=sort_on)
+
+    for char in char_list:
+        if char["char"].isalpha():
+            print(f"The '{char['char']}' character was found {char['count']} times")
+
 
 main()
