@@ -4,7 +4,7 @@ def main():
         print(file_contents)
         print("Number of words in text: " + str(word_count(file_contents)))
         print(char_count(file_contents))
-        print(report(char_count()))
+        print(report(char_count(file_contents)))
 
 def word_count(text):
     words = text.split()
@@ -22,9 +22,15 @@ def char_count(text):
             char_count[char] = 1
     return char_count
 
-def report(char_count_dict):
-    for char in char_count_dict:
-        char_count_dict.sort(reverse=True, key=char[char])
+def sort_on(dict):
+    return dict["num"]
 
+def report(char_count_dict):
+    char_list = []
+    for char in char_count_dict:
+        one_char_count = char_count_dict[char]
+        char_list.append({char: one_char_count})
+        
+    char_list.sort(reverse=True, key=char_list[1])
 
 main()
